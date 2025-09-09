@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Style for time column to stand out */
+        .time-cell {
+            background-color: #e0f2fe;
+            font-weight: bold;
+        }
+        /* Responsive scroll for smaller screens */
+        .overflow-x-auto {
+            -webkit-overflow-scrolling: touch;
+        }
+        .table-container {
+            max-height: 80vh; /* Limits table height for better mobile viewing */
+            overflow-y: auto; /* Adds vertical scroll for the table */
+        }
+        /* Style for selected cells before merging */
+        .selected-cell {
+            background-color: #bfdbfe; /* Tailwind's blue-200 */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 sm:p-8 flex items-center justify-center min-h-screen">
+
+    <div class="container mx-auto p-4 sm:p-8 bg-white rounded-2xl shadow-xl max-w-6xl">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center mb-8 text-gray-800">7-Day Schedule</h1>
+        
+        <!-- Action Buttons and Instructions -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 mb-4">
+            <button id="merge-btn" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition-colors">
+                Merge Cells
+            </button>
+            <button id="reset-btn" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg shadow hover:bg-gray-400 transition-colors">
+                Reset Calendar
+            </button>
+        </div>
+        <p class="text-center text-sm text-gray-500 mb-6">
+            Single-click a cell to select it for merging, and double-click to edit its content.
+        </p>
+
+        <div class="overflow-x-auto table-container">
+            <table class="w-full border-collapse" id="schedule-table">
+                <thead class="sticky top-0 bg-blue-100 text-blue-800 uppercase text-sm leading-normal">
+                    <tr>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Time</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Mon</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Tues</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Wed</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Thurs</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Fri</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Sat</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Sun</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                    <!-- Schedule for each hour from 6:00 AM to 5:00 AM -->
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">6:00 AM</td>
+                        <td class="py-3 px-4 text-left">Stretch, PT</td>
+                        <td class="py-3 px-4 text-left">PT</td>
+                        <td class="py-3 px-4 text-left">Meditation</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">7:00 AM</td>
+                        <td class="py-3 px-4 text-left">Breakfast</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left">Gym, Breakfast</td>
+                        <td class="py-3 px-4 text-left">Breakfast, Gym</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">8:00 AM</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left">9:00 AM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">10:00 AM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">11:00 AM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">12:00 PM</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">1:00 PM</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">2:00 PM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">3:00 PM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">4:00 PM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">5:00 PM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left">Social</td>
+                        <td class="py-3 px-4 text-left">Social</td>
+                        <td class="py-3 px-4 text-left">Social</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">6:00 PM</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">7:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <!-- Remaining hours for Sleep -->
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">8:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">9:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">10:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">11:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">12:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">1:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">2:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">3:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">4:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">5:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const mergeBtn = document.getElementById('merge-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const tableBody = document.querySelector('#schedule-table tbody');
+        
+        let selectedCells = [];
+
+        // Single-click to select cells for merging
+        tableBody.addEventListener('click', (event) => {
+            const cell = event.target;
+            // Check that the cell is a schedule cell and not the time column
+            if (cell.tagName === 'TD' && !cell.classList.contains('time-cell')) {
+                cell.classList.toggle('selected-cell');
+                
+                // Add or remove the cell from the selectedCells array
+                const index = selectedCells.indexOf(cell);
+                if (index > -1) {
+                    selectedCells.splice(index, 1);
+                } else {
+                    selectedCells.push(cell);
+                }
+            }
+        });
+
+        // Double-click to edit a cell
+        tableBody.addEventListener('dblclick', (event) => {
+            const cell = event.target;
+            // Check that the cell is a schedule cell and not the time column
+            if (cell.tagName === 'TD' && !cell.classList.contains('time-cell')) {
+                cell.contentEditable = 'true';
+                cell.focus();
+            }
+        });
+
+        // Blur event to stop editing when the user clicks away
+        tableBody.addEventListener('blur', (event) => {
+            const cell = event.target;
+            if (cell.tagName === 'TD') {
+                cell.contentEditable = 'false';
+            }
+        }, true); // Use capture phase to ensure it works on the target
+
+        mergeBtn.addEventListener('click', () => {
+            // Sort selected cells by row and then by column to handle selection order
+            selectedCells.sort((a, b) => {
+                const rowA = a.closest('tr').rowIndex;
+                const rowB = b.closest('tr').rowIndex;
+                const colA = a.cellIndex;
+                const colB = b.cellIndex;
+                if (colA !== colB) return colA - colB;
+                return rowA - rowB;
+            });
+            
+            if (selectedCells.length > 1) {
+                // Check if all cells are in the same column
+                const firstCellColumn = selectedCells[0].cellIndex;
+                const allInSameColumn = selectedCells.every(cell => cell.cellIndex === firstCellColumn);
+
+                // Check if cells are contiguous
+                const firstRow = selectedCells[0].closest('tr').rowIndex;
+                const lastRow = selectedCells[selectedCells.length - 1].closest('tr').rowIndex;
+                const isContiguous = (lastRow - firstRow + 1) === selectedCells.length;
+
+                if (allInSameColumn && isContiguous) {
+                    const firstCell = selectedCells[0];
+                    firstCell.rowSpan = selectedCells.length;
+
+                    // Concatenate the content of the merged cells
+                    let mergedContent = '';
+                    selectedCells.forEach(cell => {
+                        mergedContent += cell.innerText.trim() + ' ';
+                    });
+                    firstCell.innerText = mergedContent.trim();
+                    
+                    // Hide the remaining cells
+                    for (let i = 1; i < selectedCells.length; i++) {
+                        selectedCells[i].style.display = 'none';
+                    }
+                }
+            }
+
+            // Clear the selection regardless of whether a merge occurred
+            selectedCells.forEach(cell => cell.classList.remove('selected-cell'));
+            selectedCells = [];
+        });
+
+        resetBtn.addEventListener('click', () => {
+            // A simple way to reset the calendar is to reload the page
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>
+
