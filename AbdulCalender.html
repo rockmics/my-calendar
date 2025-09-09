@@ -1,440 +1,406 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2113.65">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6d6d6d; -webkit-text-stroke: #6d6d6d}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6b0001; -webkit-text-stroke: #6b0001}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #fb0007; -webkit-text-stroke: #fb0007}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #0000ff; -webkit-text-stroke: #0000ff}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #18702b; -webkit-text-stroke: #18702b}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #4d5055; -webkit-text-stroke: #4d5055}
-    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; -webkit-text-stroke: #000000; min-height: 16.0px}
-    span.s1 {font-kerning: none; background-color: #ecf1f7}
-    span.s2 {font-kerning: none; color: #fb0007; background-color: #ecf1f7; -webkit-text-stroke: 0px #fb0007}
-    span.s3 {font-kerning: none; color: #2a2a2a; background-color: #ecf1f7; -webkit-text-stroke: 0px #2a2a2a}
-    span.s4 {font-kerning: none; color: #000000; background-color: #ecf1f7; -webkit-text-stroke: 0px #000000}
-    span.s5 {font-kerning: none; color: #0000ff; background-color: #ecf1f7; -webkit-text-stroke: 0px #0000ff}
-    span.s6 {font-kerning: none; color: #6b0001; background-color: #ecf1f7; -webkit-text-stroke: 0px #6b0001}
-    span.s7 {font-kerning: none; color: #6f0ec3; background-color: #ecf1f7; -webkit-text-stroke: 0px #6f0ec3}
-    span.s8 {font-kerning: none; color: #093c94; background-color: #ecf1f7; -webkit-text-stroke: 0px #093c94}
-    span.s9 {font-kerning: none; color: #18702b; background-color: #ecf1f7; -webkit-text-stroke: 0px #18702b}
-    span.s10 {font-kerning: none; color: #137646; background-color: #ecf1f7; -webkit-text-stroke: 0px #137646}
-    span.s11 {font-kerning: none}
-    span.s12 {font-kerning: none; color: #a4450b; background-color: #ecf1f7; -webkit-text-stroke: 0px #a4450b}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Day Calendar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Style for time column to stand out */
+        .time-cell {
+            background-color: #e0f2fe;
+            font-weight: bold;
+        }
+        /* Responsive scroll for smaller screens */
+        .overflow-x-auto {
+            -webkit-overflow-scrolling: touch;
+        }
+        .table-container {
+            max-height: 80vh; /* Limits table height for better mobile viewing */
+            overflow-y: auto; /* Adds vertical scroll for the table */
+        }
+        /* Style for selected cells before merging */
+        .selected-cell {
+            background-color: #bfdbfe; /* Tailwind's blue-200 */
+        }
+    </style>
 </head>
-<body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE</span><span class="s2"> html</span><span class="s1">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s1">html</span><span class="s4"> </span><span class="s2">lang</span><span class="s3">=</span><span class="s5">"en"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">meta</span><span class="s4"> </span><span class="s1">charset</span><span class="s3">=</span><span class="s5">"UTF-8"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">meta</span><span class="s4"> </span><span class="s2">name</span><span class="s3">=</span><span class="s1">"viewport"</span><span class="s4"> </span><span class="s2">content</span><span class="s3">=</span><span class="s1">"width=device-width, initial-scale=1.0"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">title</span><span class="s3">&gt;</span><span class="s1">7-Day Calendar</span><span class="s3">&lt;/</span><span class="s6">title</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">script</span><span class="s4"> </span><span class="s2">src</span><span class="s3">=</span><span class="s1">"https://cdn.tailwindcss.com"</span><span class="s3">&gt;&lt;/</span><span class="s6">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p6"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s7">@import</span><span class="s4"> </span><span class="s8">url</span><span class="s4">(</span><span class="s1">'https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap'</span><span class="s4">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">body</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-family:</span><span class="s1"> </span><span class="s9">'Inter'</span><span class="s1">, </span><span class="s8">sans-serif</span><span class="s1">;</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#f3f4f6</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">/* Style for time column to stand out */</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s6">.time-cell</span><span class="s1"> {</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">background-color:</span><span class="s4"> </span><span class="s8">#e0f2fe</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s2">font-weight:</span><span class="s1"> </span><span class="s8">bold</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">/* Responsive scroll for smaller screens */</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.overflow-x-auto</span><span class="s4"> {</span></p>
-<p class="p3"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">-webkit-overflow-scrolling:</span><span class="s4"> </span><span class="s8">touch</span><span class="s4">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.table-container</span><span class="s4"> {</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">max-height:</span><span class="s4"> </span><span class="s10">80vh</span><span class="s4">; </span><span class="s1">/* Limits table height for better mobile viewing */</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">overflow-y:</span><span class="s4"> </span><span class="s8">auto</span><span class="s4">; </span><span class="s1">/* Adds vertical scroll for the table */</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">/* Style for selected cells before merging */</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">.selected-cell</span><span class="s4"> {</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s2">background-color:</span><span class="s4"> </span><span class="s8">#bfdbfe</span><span class="s4">; </span><span class="s1">/* Tailwind's blue-200 */</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">style</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">head</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s3">&lt;</span><span class="s6">body</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-gray-100 p-4 sm:p-8 flex items-center justify-center min-h-screen"</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"container mx-auto p-4 sm:p-8 bg-white rounded-2xl shadow-xl max-w-6xl"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">h1</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-3xl sm:text-4xl font-bold text-center mb-8 text-gray-800"</span><span class="s3">&gt;</span><span class="s4">7-Day Schedule</span><span class="s3">&lt;/</span><span class="s6">h1</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">&lt;!-- Action Buttons and Instructions --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"flex flex-col sm:flex-row items-center justify-center gap-2 mb-4"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"merge-btn"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition-colors"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>Merge Cells</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">button</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"reset-btn"</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg shadow hover:bg-gray-400 transition-colors"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>Reset Calendar</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">button</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">p</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-center text-sm text-gray-500 mb-6"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>Single-click a cell to select it for merging, and double-click to edit its content.</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">p</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;</span><span class="s6">div</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"overflow-x-auto table-container"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;</span><span class="s6">table</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"w-full border-collapse"</span><span class="s4"> </span><span class="s2">id</span><span class="s3">=</span><span class="s1">"schedule-table"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">thead</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"sticky top-0 bg-blue-100 text-blue-800 uppercase text-sm leading-normal"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">th</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left border-b border-gray-200"</span><span class="s3">&gt;</span><span class="s4">Time</span><span class="s3">&lt;/</span><span class="s6">th</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">th</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left border-b border-gray-200"</span><span class="s3">&gt;</span><span class="s4">Mon</span><span class="s3">&lt;/</span><span class="s6">th</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">th</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left border-b border-gray-200"</span><span class="s3">&gt;</span><span class="s4">Tues</span><span class="s3">&lt;/</span><span class="s6">th</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">th</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left border-b border-gray-200"</span><span class="s3">&gt;</span><span class="s4">Wed</span><span class="s3">&lt;/</span><span class="s6">th</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">th</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left border-b border-gray-200"</span><span class="s3">&gt;</span><span class="s4">Thurs</span><span class="s3">&lt;/</span><span class="s6">th</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">th</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left border-b border-gray-200"</span><span class="s3">&gt;</span><span class="s4">Fri</span><span class="s3">&lt;/</span><span class="s6">th</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">th</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left border-b border-gray-200"</span><span class="s3">&gt;</span><span class="s4">Sat</span><span class="s3">&lt;/</span><span class="s6">th</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">th</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left border-b border-gray-200"</span><span class="s3">&gt;</span><span class="s4">Sun</span><span class="s3">&lt;/</span><span class="s6">th</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">thead</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;</span><span class="s6">tbody</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"text-gray-600 text-sm font-light"</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s1">&lt;!-- Schedule for each hour from 6:00 AM to 5:00 AM --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">6:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Stretch, PT</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">PT</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Meditation</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">7:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Breakfast</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Gym, Breakfast</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Breakfast, Gym</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">8:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Core, Work</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Core, Work</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Core, Work</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Core, Work</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Core, Work</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">9:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">10:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">11:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">12:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Lunch</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Lunch</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Lunch</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Lunch</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Lunch</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Lunch</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Lunch</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">1:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Admin, Training</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Admin, Training</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Admin, Training</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Admin, Training</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Admin, Training</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">2:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">3:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">4:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">5:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Social</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Social</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Social</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">6:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Dinner</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Dinner</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Dinner</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Dinner</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Dinner</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Dinner</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Dinner</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">7:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s1">&lt;!-- Remaining hours for Sleep --&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">8:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">9:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">10:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">11:00 PM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">12:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">1:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">2:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">3:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">4:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;</span><span class="s6">tr</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"border-b border-gray-200 hover:bg-gray-50"</span><span class="s3">&gt;</span></p>
-<p class="p4"><span class="s4"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s4"> </span><span class="s2">class</span><span class="s3">=</span><span class="s1">"py-3 px-4 text-left whitespace-nowrap time-cell"</span><span class="s3">&gt;</span><span class="s4">5:00 AM</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span></span><span class="s3">&lt;</span><span class="s6">td</span><span class="s1"> </span><span class="s2">class</span><span class="s3">=</span><span class="s5">"py-3 px-4 text-left"</span><span class="s3">&gt;</span><span class="s1">Sleep</span><span class="s3">&lt;/</span><span class="s6">td</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s3">&lt;/</span><span class="s6">tr</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s3">&lt;/</span><span class="s6">tbody</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s3">&lt;/</span><span class="s6">table</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s6">div</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> mergeBtn = document.getElementById(</span><span class="s9">'merge-btn'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> resetBtn = document.getElementById(</span><span class="s9">'reset-btn'</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">const</span><span class="s1"> tableBody = document.querySelector(</span><span class="s9">'#schedule-table tbody'</span><span class="s1">);</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">        </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span></span><span class="s7">let</span><span class="s1"> selectedCells = [];</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// Single-click to select cells for merging</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>tableBody.addEventListener(</span><span class="s9">'click'</span><span class="s1">, (event) =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> cell = event.target;</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Check that the cell is a schedule cell and not the time column</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> (cell.tagName === </span><span class="s9">'TD'</span><span class="s1"> &amp;&amp; !cell.classList.contains(</span><span class="s9">'time-cell'</span><span class="s1">)) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>cell.classList.toggle(</span><span class="s9">'selected-cell'</span><span class="s1">);</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s1">// Add or remove the cell from the selectedCells array</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> index = selectedCells.indexOf(cell);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">if</span><span class="s1"> (index &gt; -</span><span class="s12">1</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>selectedCells.splice(index, </span><span class="s12">1</span><span class="s1">);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>} </span><span class="s7">else</span><span class="s1"> {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>selectedCells.push(cell);</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// Double-click to edit a cell</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>tableBody.addEventListener(</span><span class="s9">'dblclick'</span><span class="s1">, (event) =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> cell = event.target;</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Check that the cell is a schedule cell and not the time column</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> (cell.tagName === </span><span class="s9">'TD'</span><span class="s1"> &amp;&amp; !cell.classList.contains(</span><span class="s9">'time-cell'</span><span class="s1">)) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>cell.contentEditable = </span><span class="s9">'true'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>cell.focus();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span></span><span class="s1">// Blur event to stop editing when the user clicks away</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>tableBody.addEventListener(</span><span class="s9">'blur'</span><span class="s1">, (event) =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">const</span><span class="s1"> cell = event.target;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> (cell.tagName === </span><span class="s9">'TD'</span><span class="s1">) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>cell.contentEditable = </span><span class="s9">'false'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">        </span>}, </span><span class="s7">true</span><span class="s4">); </span><span class="s1">// Use capture phase to ensure it works on the target</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>mergeBtn.addEventListener(</span><span class="s9">'click'</span><span class="s1">, () =&gt; {</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Sort selected cells by row and then by column to handle selection order</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>selectedCells.sort((a, b) =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> rowA = a.closest(</span><span class="s9">'tr'</span><span class="s1">).rowIndex;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> rowB = b.closest(</span><span class="s9">'tr'</span><span class="s1">).rowIndex;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> colA = a.cellIndex;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> colB = b.cellIndex;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">if</span><span class="s1"> (colA !== colB) </span><span class="s7">return</span><span class="s1"> colA - colB;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">return</span><span class="s1"> rowA - rowB;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>});</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">            </span></span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span></span><span class="s7">if</span><span class="s1"> (selectedCells.length &gt; </span><span class="s12">1</span><span class="s1">) {</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s1">// Check if all cells are in the same column</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> firstCellColumn = selectedCells[</span><span class="s12">0</span><span class="s1">].cellIndex;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> allInSameColumn = selectedCells.every(cell =&gt; cell.cellIndex === firstCellColumn);</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                </span></span><span class="s1">// Check if cells are contiguous</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> firstRow = selectedCells[</span><span class="s12">0</span><span class="s1">].closest(</span><span class="s9">'tr'</span><span class="s1">).rowIndex;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> lastRow = selectedCells[selectedCells.length - </span><span class="s12">1</span><span class="s1">].closest(</span><span class="s9">'tr'</span><span class="s1">).rowIndex;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">const</span><span class="s1"> isContiguous = (lastRow - firstRow + </span><span class="s12">1</span><span class="s1">) === selectedCells.length;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span></span><span class="s7">if</span><span class="s1"> (allInSameColumn &amp;&amp; isContiguous) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">const</span><span class="s1"> firstCell = selectedCells[</span><span class="s12">0</span><span class="s1">];</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>firstCell.rowSpan = selectedCells.length;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s1">// Concatenate the content of the merged cells</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">let</span><span class="s1"> mergedContent = </span><span class="s9">''</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>selectedCells.forEach(cell =&gt; {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>mergedContent += cell.innerText.trim() + </span><span class="s9">' '</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>});</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>firstCell.innerText = mergedContent.trim();</span></p>
-<p class="p8"><span class="s1"><span class="Apple-converted-space">                    </span></span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">                    </span></span><span class="s1">// Hide the remaining cells</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span></span><span class="s7">for</span><span class="s1"> (</span><span class="s7">let</span><span class="s1"> i = </span><span class="s12">1</span><span class="s1">; i &lt; selectedCells.length; i++) {</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                        </span>selectedCells[i].style.display = </span><span class="s9">'none'</span><span class="s1">;</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                    </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">                </span>}</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>}</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// Clear the selection regardless of whether a merge occurred</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>selectedCells.forEach(cell =&gt; cell.classList.remove(</span><span class="s9">'selected-cell'</span><span class="s1">));</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>selectedCells = [];</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p8"><span class="s11"></span><br></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>resetBtn.addEventListener(</span><span class="s9">'click'</span><span class="s1">, () =&gt; {</span></p>
-<p class="p7"><span class="s4"><span class="Apple-converted-space">            </span></span><span class="s1">// A simple way to reset the calendar is to reload the page</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">            </span>window.location.reload();</span></p>
-<p class="p5"><span class="s1"><span class="Apple-converted-space">        </span>});</span></p>
-<p class="p2"><span class="s4"><span class="Apple-converted-space">    </span></span><span class="s3">&lt;/</span><span class="s1">script</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">body</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s3">&lt;/</span><span class="s1">html</span><span class="s3">&gt;</span></p>
-<p class="p8"><span class="s11"></span><br></p>
+<body class="bg-gray-100 p-4 sm:p-8 flex items-center justify-center min-h-screen">
+
+    <div class="container mx-auto p-4 sm:p-8 bg-white rounded-2xl shadow-xl max-w-6xl">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center mb-8 text-gray-800">7-Day Schedule</h1>
+        
+        <!-- Action Buttons and Instructions -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 mb-4">
+            <button id="merge-btn" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg shadow hover:bg-blue-600 transition-colors">
+                Merge Cells
+            </button>
+            <button id="reset-btn" class="bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg shadow hover:bg-gray-400 transition-colors">
+                Reset Calendar
+            </button>
+        </div>
+        <p class="text-center text-sm text-gray-500 mb-6">
+            Single-click a cell to select it for merging, and double-click to edit its content.
+        </p>
+
+        <div class="overflow-x-auto table-container">
+            <table class="w-full border-collapse" id="schedule-table">
+                <thead class="sticky top-0 bg-blue-100 text-blue-800 uppercase text-sm leading-normal">
+                    <tr>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Time</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Mon</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Tues</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Wed</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Thurs</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Fri</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Sat</th>
+                        <th class="py-3 px-4 text-left border-b border-gray-200">Sun</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                    <!-- Schedule for each hour from 6:00 AM to 5:00 AM -->
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">6:00 AM</td>
+                        <td class="py-3 px-4 text-left">Stretch, PT</td>
+                        <td class="py-3 px-4 text-left">PT</td>
+                        <td class="py-3 px-4 text-left">Meditation</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">7:00 AM</td>
+                        <td class="py-3 px-4 text-left">Breakfast</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left">Gym, Breakfast</td>
+                        <td class="py-3 px-4 text-left">Breakfast, Gym</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">8:00 AM</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left">Core, Work</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left">9:00 AM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">10:00 AM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">11:00 AM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">12:00 PM</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                        <td class="py-3 px-4 text-left">Lunch</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">1:00 PM</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left">Admin, Training</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">2:00 PM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">3:00 PM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">4:00 PM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">5:00 PM</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left">Social</td>
+                        <td class="py-3 px-4 text-left">Social</td>
+                        <td class="py-3 px-4 text-left">Social</td>
+                        <td class="py-3 px-4 text-left"></td>
+                        <td class="py-3 px-4 text-left"></td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">6:00 PM</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                        <td class="py-3 px-4 text-left">Dinner</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">7:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <!-- Remaining hours for Sleep -->
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">8:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">9:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">10:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">11:00 PM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">12:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">1:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">2:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">3:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">4:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-4 text-left whitespace-nowrap time-cell">5:00 AM</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                        <td class="py-3 px-4 text-left">Sleep</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const mergeBtn = document.getElementById('merge-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const tableBody = document.querySelector('#schedule-table tbody');
+        
+        let selectedCells = [];
+
+        // Single-click to select cells for merging
+        tableBody.addEventListener('click', (event) => {
+            const cell = event.target;
+            // Check that the cell is a schedule cell and not the time column
+            if (cell.tagName === 'TD' && !cell.classList.contains('time-cell')) {
+                cell.classList.toggle('selected-cell');
+                
+                // Add or remove the cell from the selectedCells array
+                const index = selectedCells.indexOf(cell);
+                if (index > -1) {
+                    selectedCells.splice(index, 1);
+                } else {
+                    selectedCells.push(cell);
+                }
+            }
+        });
+
+        // Double-click to edit a cell
+        tableBody.addEventListener('dblclick', (event) => {
+            const cell = event.target;
+            // Check that the cell is a schedule cell and not the time column
+            if (cell.tagName === 'TD' && !cell.classList.contains('time-cell')) {
+                cell.contentEditable = 'true';
+                cell.focus();
+            }
+        });
+
+        // Blur event to stop editing when the user clicks away
+        tableBody.addEventListener('blur', (event) => {
+            const cell = event.target;
+            if (cell.tagName === 'TD') {
+                cell.contentEditable = 'false';
+            }
+        }, true); // Use capture phase to ensure it works on the target
+
+        mergeBtn.addEventListener('click', () => {
+            // Sort selected cells by row and then by column to handle selection order
+            selectedCells.sort((a, b) => {
+                const rowA = a.closest('tr').rowIndex;
+                const rowB = b.closest('tr').rowIndex;
+                const colA = a.cellIndex;
+                const colB = b.cellIndex;
+                if (colA !== colB) return colA - colB;
+                return rowA - rowB;
+            });
+            
+            if (selectedCells.length > 1) {
+                // Check if all cells are in the same column
+                const firstCellColumn = selectedCells[0].cellIndex;
+                const allInSameColumn = selectedCells.every(cell => cell.cellIndex === firstCellColumn);
+
+                // Check if cells are contiguous
+                const firstRow = selectedCells[0].closest('tr').rowIndex;
+                const lastRow = selectedCells[selectedCells.length - 1].closest('tr').rowIndex;
+                const isContiguous = (lastRow - firstRow + 1) === selectedCells.length;
+
+                if (allInSameColumn && isContiguous) {
+                    const firstCell = selectedCells[0];
+                    firstCell.rowSpan = selectedCells.length;
+
+                    // Concatenate the content of the merged cells
+                    let mergedContent = '';
+                    selectedCells.forEach(cell => {
+                        mergedContent += cell.innerText.trim() + ' ';
+                    });
+                    firstCell.innerText = mergedContent.trim();
+                    
+                    // Hide the remaining cells
+                    for (let i = 1; i < selectedCells.length; i++) {
+                        selectedCells[i].style.display = 'none';
+                    }
+                }
+            }
+
+            // Clear the selection regardless of whether a merge occurred
+            selectedCells.forEach(cell => cell.classList.remove('selected-cell'));
+            selectedCells = [];
+        });
+
+        resetBtn.addEventListener('click', () => {
+            // A simple way to reset the calendar is to reload the page
+            window.location.reload();
+        });
+    </script>
 </body>
 </html>
+
