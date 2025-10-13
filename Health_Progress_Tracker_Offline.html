@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Health Progress Tracker — Offline</title>
+<style>
+:root{--bg:#f8fafc;--card:#fff;--line:#e5e7eb;--text:#0f172a;--muted:#64748b;--accent:#0ea5e9}
+*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial}
+.wrap{max-width:1100px;margin:0 auto;padding:16px 20px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.push{margin-left:auto}
+.btn{border:1px solid var(--line);background:#fff;padding:8px 12px;border-radius:10px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.h1{font-size:22px;font-weight:600;margin:0 0 8px}
+.tabs{display:flex;gap:16px;border-bottom:1px solid var(--line);margin-top:8px}
+.tab{padding:8px 2px;border-bottom:2px solid transparent;color:#475569;cursor:pointer}
+.tab.active{border-color:var(--accent);color:var(--accent)}
+.grid{display:grid;gap:12px}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.stat .label{color:#64748b;font-size:12px;margin-bottom:4px}
+.stat .value{font-size:26px;font-weight:600}
+.field{display:grid;gap:4px}
+.field label{font-size:12px;color:#64748b}
+input,select,textarea{border:1px solid var(--line);border-radius:8px;padding:8px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left}
+th{color:#64748b;font-weight:600;font-size:12px}
+.muted{color:#64748b;font-size:14px}
+.truncate{max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:900px){ .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:600px){ .grid-4,.grid-3,.grid-2{grid-template-columns:1fr} }
+.chart{width:100%;height:280px}
+.chip{display:inline-block;background:#ecfeff;color:#0e7490;border-radius:9999px;padding:2px 8px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="row">
+    <div class="h1">Health Progress Tracker — Offline</div>
+    <div class="push row" style="gap:8px">
+      <button class="btn" id="exportBtn">Export JSON</button>
+      <label class="btn" for="importFile" style="cursor:pointer">Import JSON</label>
+      <input id="importFile" type="file" accept="application/json" style="display:none" />
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab active" data-tab="dashboard">Dashboard</div>
+    <div class="tab" data-tab="add">Add Entry</div>
+    <div class="tab" data-tab="log">Log</div>
+    <div class="tab" data-tab="workouts">Workouts</div>
+    <div class="tab" data-tab="targets">Targets</div>
+  </div>
+
+  <div id="dashboard" class="view" style="margin-top:12px">
+    <div class="grid grid-4">
+      <div class="card stat"><div class="label">Latest Weight</div><div class="value" id="statWeight">—</div></div>
+      <div class="card stat"><div class="label">This Week • Avg Glucose</div><div class="value" id="statGlucose">—</div></div>
+      <div class="card stat"><div class="label">This Week • Avg Calories</div><div class="value" id="statCal">—</div></div>
+      <div class="card stat"><div class="label">Workout Minutes (wk)</div><div class="value" id="statMin">0</div></div>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:12px">
+      <div class="card">
+        <div class="muted" style="margin-bottom:6px">Weight & Glucose (Last 30 days)</div>
+        <svg id="chartWG" class="chart"></svg>
+      </div>
+      <div class="card">
+        <div class="muted" style="margin-bottom:6px">Calories (Last 30 days)</div>
+        <svg id="chartCal" class="chart"></svg>
+      </div>
+    </div>
+  </div>
+
+  <div id="add" class="view" style="display:none;margin-top:12px">
+    <div class="card">
+      <div class="grid grid-4">
+        <div class="field"><label>Date</label><input id="fDate" type="date"></div>
+        <div class="field"><label>Weight (lb)</label><input id="fWeight" type="number" step="0.1"></div>
+        <div class="field"><label>Waist (in)</label><input id="fWaist" type="number" step="0.1"></div>
+        <div class="grid grid-2">
+          <div class="field"><label>BP Sys</label><input id="fSys" type="number"></div>
+          <div class="field"><label>BP Dia</label><input id="fDia" type="number"></div>
+        </div>
+        <div class="field"><label>Fasting Glucose (mg/dL)</label><input id="fGlucose" type="number"></div>
+        <div class="field"><label>Resting HR (bpm)</label><input id="fHR" type="number"></div>
+        <div class="field"><label>Sleep (hrs)</label><input id="fSleep" type="number" step="0.1"></div>
+        <div class="field"><label>Calories (kcal)</label><input id="fCal" type="number"></div>
+        <div class="grid grid-3">
+          <div class="field"><label>Protein (g)</label><input id="fPro" type="number"></div>
+          <div class="field"><label>Carbs (g)</label><input id="fCarb" type="number"></div>
+          <div class="field"><label>Fat (g)</label><input id="fFat" type="number"></div>
+        </div>
+        <div class="grid grid-2">
+          <div class="field"><label>Fiber (g)</label><input id="fFiber" type="number"></div>
+          <div class="field"><label>Water (oz)</label><input id="fWater" type="number"></div>
+        </div>
+        <div class="field"><label>Steps</label><input id="fSteps" type="number"></div>
+        <div class="grid grid-3">
+          <div class="field"><label>Workout Type</label>
+            <select id="fWType">
+              <option value=""></option><option>cardio</option><option>strength</option><option>core</option><option>mobility</option><option>rest</option>
+            </select>
+          </div>
+          <div class="field"><label>Workout Minutes</label><input id="fWMin" type="number"></div>
+          <div class="field"><label>Workout Calories</label><input id="fWKcal" type="number"></div>
+        </div>
+        <div class="grid grid-2">
+          <div class="field"><label>RPE (1-10)</label><input id="fRPE" type="number" min="1" max="10"></div>
+          <div class="field"><label>Energy (1-10)</label><input id="fEnergy" type="number" min="1" max="10"></div>
+        </div>
+        <div class="field" style="grid-column:1/-1"><label>Notes</label><textarea id="fNotes" rows="3"></textarea></div>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="saveBtn">Save Entry</button>
+        <button class="btn" id="clearBtn">Clear</button>
+        <button class="btn" id="prefillBtn">Prefill Targets</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="log" class="view" style="display:none;margin-top:12px">
+    <div class="card" style="overflow:auto">
+      <table>
+        <thead><tr>
+          <th>Date</th><th>Wt</th><th>Waist</th><th>BP</th><th>Glucose</th><th>Sleep</th>
+          <th>Cal</th><th>P</th><th>C</th><th>F</th><th>Workout</th><th>Min</th><th>kcal</th><th>Notes</th><th>Delete</th>
+        </tr></thead>
+        <tbody id="logBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="workouts" class="view" style="display:none;margin-top:12px">
+    <div class="row"><div class="h1" style="font-size:18px">Weekly Workouts Checklist</div><div class="push"></div>
+      <button class="btn" id="resetWeek">Reset Week</button>
+    </div>
+    <div class="card" style="overflow:auto;margin-top:8px">
+      <table>
+        <thead><tr><th>Day</th><th>Cardio (settings)</th><th>Strength</th><th>Core</th><th>Stretch</th><th>Done</th></tr></thead>
+        <tbody id="wkBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="targets" class="view" style="display:none;margin-top:12px">
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="muted" style="margin-bottom:6px">Daily Nutrition Targets</div>
+        <ul class="muted">
+          <li>Calories: <b>1900 kcal</b></li>
+          <li>Protein: <b>165 g</b></li>
+          <li>Carbs: <b>140 g</b></li>
+          <li>Fat: <b>73 g</b></li>
+          <li>Fiber: <b>30–35 g</b></li>
+          <li>Water: <b>90–120 oz</b></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="muted" style="margin-bottom:6px">Vitals Targets</div>
+        <ul class="muted">
+          <li>Fasting Glucose: <b>≤100 mg/dL</b></li>
+          <li>Blood Pressure: <b><130/80 mmHg</b></li>
+          <li>Resting HR: <b>60–70 bpm</b></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="muted" style="margin-bottom:6px">Tips</div>
+        <ul class="muted">
+          <li>4–6 workouts/week; HR ~110–130 on fat‑burn days.</li>
+          <li>Break fast with protein + fiber; time carbs around training.</li>
+          <li>Log in the morning for consistency.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY='hp_entries_v1';
+  const WORKOUT_KEY='hp_workouts_v1';
+  const TARGETS={cal:1900, pro:165, carb:140, fat:73};
+
+  const $=sel=>document.querySelector(sel);
+  const $$=sel=>Array.from(document.querySelectorAll(sel));
+
+  const DEFAULT_WORKOUTS=[
+    {day:'Mon',cardio:'Brisk walk 30 min @ 3% incline',strength:'BW squats 3×12 · Push-ups 3×10',core:'Plank 3×30s · Rev crunch 3×12',stretch:'Full-body 15 min',done:false},
+    {day:'Tue',cardio:'Walk 1m fast / 2m easy ×6–8',strength:'Step-ups 3×10/leg · Band rows 3×12',core:'Bird-dogs 3×10/side',stretch:'Hips & spine 15 min',done:false},
+    {day:'Wed',cardio:'Incline walk 25 min @ 4%',strength:'Split squats 3×10/leg · Wall sits 3×45s',core:'Dead bug 3×12 · Side plank 2×20s',stretch:'Upper back/shoulders 15 min',done:false},
+    {day:'Thu',cardio:'Step-up circuit 30s on/30s rest ×20',strength:'Pike push-ups 3×10 · Rev lunge 3×12/leg',core:'Russian twists 3×15/side · Leg raises 3×12',stretch:'Hips & hammies 15 min',done:false},
+    {day:'Fri',cardio:'Brisk walk 30 min @ 3–4%',strength:'Glute bridges 3×15 · Incline push-ups 3×12',core:'Side plank 2×25s/side · Bicycle 3×15/side',stretch:'Chest opener + T-spine 15 min',done:false},
+    {day:'Sat',cardio:'Fast-walk 60s/60s ×12–15',strength:'BW squats 3×15 · Hip hinges 3×15',core:'Plank 3×45s',stretch:'Yoga flow 20 min',done:false},
+    {day:'Sun',cardio:'Light walk 30–45 (recovery)',strength:'Active recovery',core:'Stretch only',stretch:'Recovery 20 min',done:false},
+  ];
+
+  function load(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]'); }catch(e){ return []; } }
+  function save(list){ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+  function loadW(){ try{ return JSON.parse(localStorage.getItem(WORKOUT_KEY)||'null')||DEFAULT_WORKOUTS; }catch(e){ return DEFAULT_WORKOUTS; } }
+  function saveW(ws){ localStorage.setItem(WORKOUT_KEY, JSON.stringify(ws)); }
+
+  function today(){ const d=new Date(); const m=String(d.getMonth()+1).padStart(2,'0'); const day=String(d.getDate()).padStart(2,'0'); return d.getFullYear()+'-'+m+'-'+day; }
+  function lastNDates(n){ const out=[]; const now=new Date(); for(let i=n-1;i>=0;i--){const d=new Date(now); d.setDate(now.getDate()-i); out.push(d.toISOString().slice(0,10));} return out; }
+  function avg(arr){ const a=arr.filter(x=>typeof x==='number'); return a.length? a.reduce((p,c)=>p+c,0)/a.length : undefined; }
+  function sum(arr){ return arr.filter(x=>typeof x==='number').reduce((p,c)=>p+c,0); }
+
+  $$('.tab').forEach(t=>t.addEventListener('click',()=>{
+    $$('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
+    const id=t.dataset.tab; $$('.view').forEach(v=>v.style.display='none'); $('#'+id).style.display='block';
+    if(id==='dashboard') renderCharts();
+    if(id==='log') renderLog();
+    if(id==='workouts') renderWorkouts();
+  }));
+
+  $('#fDate').value=today();
+
+  $('#exportBtn').onclick=()=>{
+    const blob=new Blob([JSON.stringify(load(),null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='progress-tracker-data.json'; a.click(); URL.revokeObjectURL(url);
+  };
+  $('#importFile').onchange=(e)=>{
+    const f=e.target.files[0]; if(!f) return;
+    const r=new FileReader(); r.onload=()=>{ try{ const data=JSON.parse(String(r.result)); if(Array.isArray(data)){ save(data); renderAll(); } }catch(err){ alert('Import failed'); } };
+    r.readAsText(f);
+  };
+
+  $('#saveBtn').onclick=()=>{
+    const e={
+      date: $('#fDate').value || today(),
+      weight: num($('#fWeight').value),
+      waist: num($('#fWaist').value),
+      bpSys: num($('#fSys').value),
+      bpDia: num($('#fDia').value),
+      glucose: num($('#fGlucose').value),
+      restingHr: num($('#fHR').value),
+      sleep: num($('#fSleep').value),
+      calories: num($('#fCal').value),
+      protein: num($('#fPro').value),
+      carbs: num($('#fCarb').value),
+      fat: num($('#fFat').value),
+      fiber: num($('#fFiber').value),
+      water: num($('#fWater').value),
+      steps: num($('#fSteps').value),
+      workoutType: $('#fWType').value || undefined,
+      workoutMinutes: num($('#fWMin').value),
+      workoutCalories: num($('#fWKcal').value),
+      rpe: num($('#fRPE').value),
+      energy: num($('#fEnergy').value),
+      notes: $('#fNotes').value || ''
+    };
+    const list=load().filter(x=>x.date!==e.date); list.push(e); list.sort((a,b)=>a.date.localeCompare(b.date)); save(list);
+    clearForm(); $('#fDate').value=today();
+    document.querySelector('.tab[data-tab="log"]').click();
+  };
+  $('#clearBtn').onclick=()=>clearForm();
+  $('#prefillBtn').onclick=()=>{ $('#fCal').value=TARGETS.cal; $('#fPro').value=TARGETS.pro; $('#fCarb').value=TARGETS.carb; $('#fFat').value=TARGETS.fat; };
+  function clearForm(){ document.querySelectorAll('#add input').forEach(i=>{ if(i.type!=='date') i.value=''; }); $('#fNotes').value=''; }
+
+  function renderWorkouts(){
+    const ws=loadW();
+    const tb=$('#wkBody'); tb.innerHTML='';
+    ws.forEach((w,i)=>{
+      const tr=document.createElement('tr');
+      tr.innerHTML=`<td>${w.day}</td><td>${w.cardio}</td><td>${w.strength}</td><td>${w.core}</td><td>${w.stretch}</td>
+        <td><input type="checkbox" ${w.done?'checked':''} data-idx="${i}"></td>`;
+      tb.appendChild(tr);
+    });
+    tb.querySelectorAll('input[type="checkbox"]').forEach(ch=>{
+      ch.addEventListener('change',()=>{ const idx=+ch.dataset.idx; const ws=loadW(); ws[idx].done=ch.checked; saveW(ws); });
+    });
+  }
+  $('#resetWeek').onclick=()=>{ saveW(DEFAULT_WORKOUTS); renderWorkouts(); };
+
+  function renderLog(){
+    const list=load().filter(e=> new Date(e.date)>= new Date(Date.now()-29*24*3600*1000));
+    const tb=$('#logBody'); tb.innerHTML='';
+    list.forEach(e=>{
+      const tr=document.createElement('tr');
+      const bp=(e.bpSys&&e.bpDia)? `${e.bpSys}/${e.bpDia}`:'';
+      tr.innerHTML=`<td>${e.date}</td><td>${nv(e.weight)}</td><td>${nv(e.waist)}</td><td>${bp}</td><td>${nv(e.glucose)}</td><td>${nv(e.sleep)}</td>
+      <td>${nv(e.calories)}</td><td>${nv(e.protein)}</td><td>${nv(e.carbs)}</td><td>${nv(e.fat)}</td><td>${e.workoutType||''}</td>
+      <td>${nv(e.workoutMinutes)}</td><td>${nv(e.workoutCalories)}</td><td class="truncate" title="${(e.notes||'').replace(/"/g,'&quot;')}">${e.notes||''}</td>
+      <td><button class="btn btn-del" data-date="${e.date}">Delete</button></td>`;
+      tb.appendChild(tr);
+    });
+    tb.querySelectorAll('.btn-del').forEach(b=>b.addEventListener('click',()=>{
+      const d=b.getAttribute('data-date'); const list=load().filter(x=>x.date!==d); save(list); renderLog(); renderDashboard();
+    }));
+  }
+
+  function renderDashboard(){
+    const list=load();
+    const latest=[...list].reverse().find(e=>typeof e.weight==='number');
+    $('#statWeight').textContent = latest? `${latest.weight} lb` : '—';
+    const now=new Date(); const dow=now.getDay(); const monday=new Date(now); monday.setDate(now.getDate()+((dow===0?-6:1)-dow)); const sunday=new Date(monday); sunday.setDate(monday.getDate()+6);
+    const thisWeek=list.filter(e=>{ const d=new Date(e.date); return d>=monday && d<=sunday; });
+    const avgG=average(thisWeek.map(e=>e.glucose)); $('#statGlucose').textContent = (avgG!=null? Math.round(avgG)+' mg/dL':'—');
+    const avgC=average(thisWeek.map(e=>e.calories)); $('#statCal').textContent = (avgC!=null? Math.round(avgC)+' kcal':'—');
+    const minW=total(thisWeek.map(e=>e.workoutMinutes||0)); $('#statMin').textContent = minW;
+  }
+
+  function renderCharts(){
+    const list=load();
+    const days=lastNDates(30);
+    const map={}; list.forEach(e=>map[e.date]=e);
+    const data=days.map(d=>({date:d, weight:map[d]?.weight, glucose:map[d]?.glucose, calories:map[d]?.calories}));
+    lineChart('#chartWG', data, ['weight','glucose']);
+    lineChart('#chartCal', data, ['calories']);
+  }
+
+  function lineChart(sel, data, keys){
+    const el=document.querySelector(sel); const w=el.clientWidth||500; const h=el.clientHeight||240; const p={l:32,r:8,t:10,b:20};
+    el.setAttribute('viewBox',`0 0 ${w} ${h}`); el.innerHTML='';
+    const xs=data.map(d=>d.date);
+    const x=(i)=> p.l + i*( (w-p.l-p.r) / Math.max(1,xs.length-1) );
+    const vals=keys.flatMap(k=> data.map(d=> (typeof d[k]==='number')? d[k]:null)).filter(v=>v!=null);
+    if(vals.length===0){ const t=document.createElementNS('http://www.w3.org/2000/svg','text'); t.setAttribute('x',String(w/2)); t.setAttribute('y',String(h/2)); t.setAttribute('text-anchor','middle'); t.textContent='No data yet'; el.appendChild(t); return; }
+    const ymin=Math.min(...vals, 0), ymax=Math.max(...vals, 1);
+    const y=(v)=> p.t + (ymax-v)*( (h-p.t-p.b) / (ymax-ymin||1) );
+    const axis=document.createElementNS('http://www.w3.org/2000/svg','g');
+    axis.innerHTML=`<line x1="${p.l}" y1="${h-p.b}" x2="${w-p.r}" y2="${h-p.b}" stroke="#cbd5e1"/>
+                    <line x1="${p.l}" y1="${p.t}" x2="${p.l}" y2="${h-p.b}" stroke="#cbd5e1"/>`;
+    el.appendChild(axis);
+    for(let i=0;i<5;i++){ const gy=p.t + i*((h-p.t-p.b)/4); const g=document.createElementNS('http://www.w3.org/2000/svg','line');
+      g.setAttribute('x1',String(p.l)); g.setAttribute('x2',String(w-p.r)); g.setAttribute('y1',String(gy)); g.setAttribute('y2',String(gy)); g.setAttribute('stroke','#e2e8f0'); el.appendChild(g);
+    }
+    const colors=['#3b82f6','#10b981','#ef4444','#f59e0b'];
+    keys.forEach((k,idx)=>{
+      const pts=data.map((d,i)=> (typeof d[k]==='number')? `${x(i)},${y(d[k])}`:null).filter(Boolean);
+      const path=document.createElementNS('http://www.w3.org/2000/svg','polyline');
+      path.setAttribute('fill','none'); path.setAttribute('stroke',colors[idx%colors.length]); path.setAttribute('stroke-width','2');
+      path.setAttribute('points', pts.join(' ')); el.appendChild(path);
+    });
+    for(let i=0;i<xs.length;i+=7){
+      const tx=document.createElementNS('http://www.w3.org/2000/svg','text'); tx.setAttribute('x',String(x(i))); tx.setAttribute('y',String(h-4)); tx.setAttribute('font-size','10'); tx.setAttribute('fill','#64748b'); tx.setAttribute('text-anchor','middle'); tx.textContent = xs[i].slice(5);
+      el.appendChild(tx);
+    }
+  }
+
+  function nv(v){ return (typeof v==='number' && !isNaN(v))? v : ''; }
+  function num(v){ const n=Number(v); return isNaN(n)? undefined : n; }
+  function average(arr){ const a=arr.filter(x=>typeof x==='number'); return a.length? a.reduce((p,c)=>p+c,0)/a.length : undefined; }
+  function total(arr){ return arr.filter(x=>typeof x==='number').reduce((p,c)=>p+c,0); }
+
+  function renderAll(){ renderDashboard(); renderCharts(); renderLog(); renderWorkouts(); }
+  renderAll();
+})();
+</script>
+</body>
+</html>
