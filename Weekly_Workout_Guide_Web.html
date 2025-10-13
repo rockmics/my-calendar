@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weekly Workout Guide + Substitutions (Web Version)</title>
+<style>
+  :root{
+    --bg:#ffffff;
+    --ink:#0f172a;
+    --muted:#475569;
+    --accent:#10b981;
+    --line:#e5e7eb;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:24px; font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    color:var(--ink); background:var(--bg); line-height:1.45;
+  }
+  h1{font-size:1.5rem; margin:0 0 12px}
+  h2{font-size:1.125rem; margin:24px 0 8px}
+  p.note{color:var(--muted); margin:0 0 16px}
+  .wrap{max-width:1100px; margin:0 auto}
+  table{
+    width:100%; border-collapse:separate; border-spacing:0; margin:8px 0 24px; background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden;
+  }
+  thead th{
+    text-align:left; font-size:.9rem; letter-spacing:.02em; color:var(--muted); background:#f8fafc; padding:10px 12px; border-bottom:1px solid var(--line);
+  }
+  tbody td{
+    padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top;
+    font-size:.95rem;
+  }
+  tbody tr:last-child td{ border-bottom:none }
+  .pill{display:inline-block; padding:2px 8px; border-radius:999px; background:#ecfeff; color:#0e7490; font-size:.8rem}
+  .kcal{font-variant-numeric:tabular-nums}
+  .grid{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+  .card{border:1px solid var(--line); border-radius:12px; padding:12px; background:#fff}
+  .small{font-size:.9rem; color:var(--muted)}
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0b0f1a; --ink:#e5e7eb; --muted:#94a3b8; --line:#1f2937; }
+    table, .card{ background:#0f172a; border-color:#1f2937 }
+    thead th{ background:#111827 }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Weekly Workout Guide + Substitutions</h1>
+    <p class="note">Simple, scannable schedule aligned with a 12/12 plan. No graphics—just the essentials. Keep heart rate ~<strong>110–130 bpm</strong> (65–75% max) unless otherwise noted. Estimated calories are approximate.</p>
+
+    <h2>Weekly Schedule</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:72px;">Day</th>
+          <th>Cardio (settings)</th>
+          <th>Strength (exercise · sets × reps · load)</th>
+          <th>Core (sets × reps or time)</th>
+          <th>Stretch / Mobility</th>
+          <th style="width:104px;">Est. kcal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mon</td>
+          <td>Brisk walk 30 min @ incline 3% <span class="pill">steady</span></td>
+          <td>Bodyweight squats 3×12 · Push-ups 3×10 (incline if needed)</td>
+          <td>Plank 3×30s · Reverse crunch 3×12</td>
+          <td>Full-body stretch 15 min</td>
+          <td class="kcal">~500</td>
+        </tr>
+        <tr>
+          <td>Tue</td>
+          <td>Walk intervals 1 min fast / 2 min easy × 6–8 rounds <span class="pill">intervals</span></td>
+          <td>Step-ups 3×10/leg · Band rows 3×12</td>
+          <td>Bird-dogs 3×10/side</td>
+          <td>Hips & spine 15 min</td>
+          <td class="kcal">~480</td>
+        </tr>
+        <tr>
+          <td>Wed</td>
+          <td>Incline walk 25 min @ incline 4% <span class="pill">steady</span></td>
+          <td>Split squats 3×10/leg · Wall sits 3×45s</td>
+          <td>Dead bug 3×12 · Side plank 2×20s/side</td>
+          <td>Upper back & shoulders 15 min</td>
+          <td class="kcal">~450</td>
+        </tr>
+        <tr>
+          <td>Thu</td>
+          <td>Step-up circuit 30 sec on / 30 sec rest × 20 min <span class="pill">low‑impact</span></td>
+          <td>Pike push-ups 3×10 · Reverse lunges 3×12/leg</td>
+          <td>Russian twists 3×15/side · Leg raises 3×12</td>
+          <td>Hips & hamstrings 15 min</td>
+          <td class="kcal">~470</td>
+        </tr>
+        <tr>
+          <td>Fri</td>
+          <td>Brisk walk 30 min @ incline 3–4% <span class="pill">steady</span></td>
+          <td>Glute bridges 3×15 · Incline push-ups 3×12</td>
+          <td>Side plank 2×25s/side · Bicycle crunch 3×15/side</td>
+          <td>Chest opener + T-spine 15 min</td>
+          <td class="kcal">~500</td>
+        </tr>
+        <tr>
+          <td>Sat</td>
+          <td>Fast-walk intervals 1:1 (60s/60s) × 12–15 rounds <span class="pill">intervals</span></td>
+          <td>BW squats 3×15 · Hip hinges 3×15</td>
+          <td>Plank 3×45s</td>
+          <td>Yoga flow 20 min</td>
+          <td class="kcal">~520</td>
+        </tr>
+        <tr>
+          <td>Sun</td>
+          <td>Light walk 30–45 min @ easy pace <span class="pill">recovery</span></td>
+          <td>Active recovery (no strength)</td>
+          <td>Stretch only</td>
+          <td>Recovery 20 min</td>
+          <td class="kcal">~250</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Strength: Dumbbell ↔ Bodyweight Substitutions</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>Squats (DB)</strong><br/>
+        <span class="small">Swap → Bodyweight squats or wall sits · Tempo 3s down / 1s up</span>
+      </div>
+      <div class="card">
+        <strong>Dumbbell Row</strong><br/>
+        <span class="small">Swap → Inverted table row or band row · Squeeze shoulder blades</span>
+      </div>
+      <div class="card">
+        <strong>Bench Press</strong><br/>
+        <span class="small">Swap → Push-ups (incline/elevated for joint comfort)</span>
+      </div>
+      <div class="card">
+        <strong>Shoulder Press</strong><br/>
+        <span class="small">Swap → Pike push-ups or band press</span>
+      </div>
+      <div class="card">
+        <strong>Deadlifts (DB)</strong><br/>
+        <span class="small">Swap → Hip hinge or single‑leg RDL (BW) · Flat back</span>
+      </div>
+      <div class="card">
+        <strong>Step-ups / Lunges</strong><br/>
+        <span class="small">Swap → Split squats or reverse lunges</span>
+      </div>
+      <div class="card">
+        <strong>Glute Bridges</strong><br/>
+        <span class="small">Same (BW) or single‑leg version</span>
+      </div>
+    </div>
+
+    <h2>Cardio Alternatives (No Bike / No Elliptical)</h2>
+    <table>
+      <thead>
+        <tr><th style="width:180px;">Goal</th><th>Substitution</th><th>Settings</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Steady-state</td><td>Brisk incline walk</td><td>3.0–3.5 mph · incline 3–6% · 20–30 min</td></tr>
+        <tr><td>Intervals (HIIT)</td><td>Walk/jog intervals</td><td>1 min fast · 2 min moderate × 6–8 rounds</td></tr>
+        <tr><td>Low-impact</td><td>Step-ups</td><td>30s on · 30s rest × 15–20 min</td></tr>
+        <tr><td>Joint-friendly</td><td>Shadowboxing / low-impact cardio circuit</td><td>30s each: march in place · step jacks · knee lifts × 20–25 min</td></tr>
+      </tbody>
+    </table>
+
+    <p class="small">Tip: Keep sessions in the fat-burn zone unless marked "intervals." Use RPE 6–7/10 as a quick gauge. Hydrate and include your 15‑minute mobility block daily.</p>
+  </div>
+</body>
+</html>
