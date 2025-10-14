@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weekly Meal + Workout Calendar (Scannable)</title>
+<style>
+  :root{--bg:#f8fafc;--card:#fff;--line:#e5e7eb;--text:#0f172a;--muted:#64748b;--accent:#0ea5e9}
+  *{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Arial}
+  .wrap{max-width:1250px;margin:0 auto;padding:16px 20px}
+  h1{font-size:22px;margin:0 0 6px}
+  .note{color:#64748b;font-size:13px;margin:4px 0 12px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+  table{width:100%;border-collapse:separate;border-spacing:0}
+  th,td{border:1px solid var(--line);padding:10px;vertical-align:top;font-size:14px;background:#fff}
+  th{background:#f1f5f9;color:#475569;font-weight:600}
+  thead th{position:sticky;top:0;z-index:1}
+  .slot{white-space:nowrap;font-weight:600;color:#334155;width:200px}
+  .time{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:#ecfeff;color:#0e7490;font-size:11px}
+  ul{margin:0;padding-left:18px}
+  li{margin:4px 0}
+  .kcal{color:#0f766e;font-weight:600}
+  .macro{color:#475569}
+  .muted{color:#64748b;font-size:12px}
+  tfoot td{background:#f8fafc;font-weight:600}
+  .sum-meals{color:#0f766e}
+  .sum-work{color:#334155}
+  .sum-net{color:#0ea5e9}
+  @media (max-width:900px){ th,td{font-size:13px;padding:8px} .slot{width:160px} }
+  @media print{ body{background:#fff} .wrap{padding:0} .card{border-color:#d1d5db} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Weekly Meal + Workout Calendar</h1>
+  <div class="note">12/12 timing: <b>Meal 1 8:00</b>, <b>Lunch 12:30</b>, <b>Snack/Pre‑WO 16:30</b>, <b>Dinner 19:30</b>. Daily target ≈ <b>1900 kcal</b> • <b>P165</b> • <b>C140</b> • <b>F73</b>. Gluten‑free; no cheese, bread, almonds.</div>
+
+  <div class="card" style="overflow:auto">
+    <table id="cal">
+      <thead>
+        <tr>
+          <th class="slot">Slot</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+          <th>Sun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="slot">Meal 1 <span class="time">8:00</span><br><span class="muted">~400 kcal • P40 C35 F12</span></td>
+          <td>
+  <ul>
+    <li>O Organics Cold‑Pressed Green Juice 12 oz + Muscle Milk Genuine shake <span class="macro">(≈30–40g protein)</span></li>
+    <li>Fruit bowl: banana + strawberries/blueberries</li>
+    <li class="kcal">≈400 kcal • P40 C35 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>O Organics Cold‑Pressed Green Juice 12 oz + Muscle Milk Genuine shake <span class="macro">(≈30–40g protein)</span></li>
+    <li>Fruit bowl: banana + strawberries/blueberries</li>
+    <li class="kcal">≈400 kcal • P40 C35 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>O Organics Cold‑Pressed Green Juice 12 oz + Muscle Milk Genuine shake <span class="macro">(≈30–40g protein)</span></li>
+    <li>Fruit bowl: banana + strawberries/blueberries</li>
+    <li class="kcal">≈400 kcal • P40 C35 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>O Organics Cold‑Pressed Green Juice 12 oz + Muscle Milk Genuine shake <span class="macro">(≈30–40g protein)</span></li>
+    <li>Fruit bowl: banana + strawberries/blueberries</li>
+    <li class="kcal">≈400 kcal • P40 C35 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>O Organics Cold‑Pressed Green Juice 12 oz + Muscle Milk Genuine shake <span class="macro">(≈30–40g protein)</span></li>
+    <li>Fruit bowl: banana + strawberries/blueberries</li>
+    <li class="kcal">≈400 kcal • P40 C35 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>O Organics Cold‑Pressed Green Juice 12 oz + Muscle Milk Genuine shake <span class="macro">(≈30–40g protein)</span></li>
+    <li>Fruit bowl: banana + strawberries/blueberries</li>
+    <li class="kcal">≈400 kcal • P40 C35 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>O Organics Cold‑Pressed Green Juice 12 oz + Muscle Milk Genuine shake <span class="macro">(≈30–40g protein)</span></li>
+    <li>Fruit bowl: banana + strawberries/blueberries</li>
+    <li class="kcal">≈400 kcal • P40 C35 F12</li>
+  </ul></td>
+        </tr>
+        <tr>
+          <td class="slot">Lunch <span class="time">12:30</span><br><span class="muted">~500 kcal • P45 C35 F18</span></td>
+          <td>
+  <ul>
+    <li>Open Nature Grilled Chicken Strips + O Organics Spring Mix</li>
+    <li>Signature Select Balsamic + EVOO</li>
+    <li>Spinach & O Organics Quinoa (½–¾ cup cooked)</li>
+    <li class="kcal">≈500 kcal • P45 C35 F18</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Grilled Chicken Strips + O Organics Spring Mix</li>
+    <li>Signature Select Balsamic + EVOO</li>
+    <li>Spinach & O Organics Quinoa (½–¾ cup cooked)</li>
+    <li class="kcal">≈500 kcal • P45 C35 F18</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Grilled Chicken Strips + O Organics Spring Mix</li>
+    <li>Signature Select Balsamic + EVOO</li>
+    <li>Spinach & O Organics Quinoa (½–¾ cup cooked)</li>
+    <li class="kcal">≈500 kcal • P45 C35 F18</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Grilled Chicken Strips + O Organics Spring Mix</li>
+    <li>Signature Select Balsamic + EVOO</li>
+    <li>Spinach & O Organics Quinoa (½–¾ cup cooked)</li>
+    <li class="kcal">≈500 kcal • P45 C35 F18</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Grilled Chicken Strips + O Organics Spring Mix</li>
+    <li>Signature Select Balsamic + EVOO</li>
+    <li>Spinach & O Organics Quinoa (½–¾ cup cooked)</li>
+    <li class="kcal">≈500 kcal • P45 C35 F18</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Grilled Chicken Strips + O Organics Spring Mix</li>
+    <li>Signature Select Balsamic + EVOO</li>
+    <li>Spinach & O Organics Quinoa (½–¾ cup cooked)</li>
+    <li class="kcal">≈500 kcal • P45 C35 F18</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Grilled Chicken Strips + O Organics Spring Mix</li>
+    <li>Signature Select Balsamic + EVOO</li>
+    <li>Spinach & O Organics Quinoa (½–¾ cup cooked)</li>
+    <li class="kcal">≈500 kcal • P45 C35 F18</li>
+  </ul></td>
+        </tr>
+        <tr>
+          <td class="slot">Snack / Pre‑WO <span class="time">16:30</span><br><span class="muted">~300 kcal • P25 C25 F12</span></td>
+          <td>
+  <ul>
+    <li>So Delicious Unsweetened Coconut Yogurt (or pistachios/walnuts; no almonds)</li>
+    <li>Orgain or RXBAR (gluten‑free) protein bar</li>
+    <li class="kcal">≈300 kcal • P25 C25 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>So Delicious Unsweetened Coconut Yogurt (or pistachios/walnuts; no almonds)</li>
+    <li>Orgain or RXBAR (gluten‑free) protein bar</li>
+    <li class="kcal">≈300 kcal • P25 C25 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>So Delicious Unsweetened Coconut Yogurt (or pistachios/walnuts; no almonds)</li>
+    <li>Orgain or RXBAR (gluten‑free) protein bar</li>
+    <li class="kcal">≈300 kcal • P25 C25 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>So Delicious Unsweetened Coconut Yogurt (or pistachios/walnuts; no almonds)</li>
+    <li>Orgain or RXBAR (gluten‑free) protein bar</li>
+    <li class="kcal">≈300 kcal • P25 C25 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>So Delicious Unsweetened Coconut Yogurt (or pistachios/walnuts; no almonds)</li>
+    <li>Orgain or RXBAR (gluten‑free) protein bar</li>
+    <li class="kcal">≈300 kcal • P25 C25 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>So Delicious Unsweetened Coconut Yogurt (or pistachios/walnuts; no almonds)</li>
+    <li>Orgain or RXBAR (gluten‑free) protein bar</li>
+    <li class="kcal">≈300 kcal • P25 C25 F12</li>
+  </ul></td><td>
+  <ul>
+    <li>So Delicious Unsweetened Coconut Yogurt (or pistachios/walnuts; no almonds)</li>
+    <li>Orgain or RXBAR (gluten‑free) protein bar</li>
+    <li class="kcal">≈300 kcal • P25 C25 F12</li>
+  </ul></td>
+        </tr>
+        <tr>
+          <td class="slot">Dinner <span class="time">19:30</span><br><span class="muted">~700 kcal • P55 C45 F31</span></td>
+          <td>
+  <ul>
+    <li>Open Nature Atlantic Salmon (~6–7 oz) + Signature Farms broccoli/asparagus</li>
+    <li>O Organics Sweet Potato (½–1 cup roasted)</li>
+    <li>Blueberries or watermelon</li>
+    <li class="kcal">≈700 kcal • P55 C45 F31</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Atlantic Salmon (~6–7 oz) + Signature Farms broccoli/asparagus</li>
+    <li>O Organics Sweet Potato (½–1 cup roasted)</li>
+    <li>Blueberries or watermelon</li>
+    <li class="kcal">≈700 kcal • P55 C45 F31</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Atlantic Salmon (~6–7 oz) + Signature Farms broccoli/asparagus</li>
+    <li>O Organics Sweet Potato (½–1 cup roasted)</li>
+    <li>Blueberries or watermelon</li>
+    <li class="kcal">≈700 kcal • P55 C45 F31</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Atlantic Salmon (~6–7 oz) + Signature Farms broccoli/asparagus</li>
+    <li>O Organics Sweet Potato (½–1 cup roasted)</li>
+    <li>Blueberries or watermelon</li>
+    <li class="kcal">≈700 kcal • P55 C45 F31</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Atlantic Salmon (~6–7 oz) + Signature Farms broccoli/asparagus</li>
+    <li>O Organics Sweet Potato (½–1 cup roasted)</li>
+    <li>Blueberries or watermelon</li>
+    <li class="kcal">≈700 kcal • P55 C45 F31</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Atlantic Salmon (~6–7 oz) + Signature Farms broccoli/asparagus</li>
+    <li>O Organics Sweet Potato (½–1 cup roasted)</li>
+    <li>Blueberries or watermelon</li>
+    <li class="kcal">≈700 kcal • P55 C45 F31</li>
+  </ul></td><td>
+  <ul>
+    <li>Open Nature Atlantic Salmon (~6–7 oz) + Signature Farms broccoli/asparagus</li>
+    <li>O Organics Sweet Potato (½–1 cup roasted)</li>
+    <li>Blueberries or watermelon</li>
+    <li class="kcal">≈700 kcal • P55 C45 F31</li>
+  </ul></td>
+        </tr>
+        <tr>
+          <td class="slot">Workouts<br><span class="muted">Cardio • Strength • Core</span></td>
+          <td><ul>
+        <li><b>Cardio:</b> Brisk walk 30 min @ 3–4% incline (steady) <span class="kcal">~300 kcal</span></li>
+        <li><b>Strength:</b> BW squats 3×12 · Push‑ups 3×10 <span class="kcal">~150 kcal</span></li>
+        <li><b>Core:</b> Plank 3×30–45s · Reverse crunch 3×12 <span class="kcal">~70 kcal</span></li>
+      </ul></td><td><ul>
+        <li><b>Cardio:</b> Walk intervals 60s fast / 120s easy ×6–8 <span class="kcal">~350 kcal</span></li>
+        <li><b>Strength:</b> Step‑ups 3×10/leg · Band rows 3×12 <span class="kcal">~150 kcal</span></li>
+        <li><b>Core:</b> Bird‑dogs 3×10/side <span class="kcal">~60 kcal</span></li>
+      </ul></td><td><ul>
+        <li><b>Cardio:</b> Incline walk 25–30 min @ 4% <span class="kcal">~300 kcal</span></li>
+        <li><b>Strength:</b> Split squats 3×10/leg · Wall sits 3×45s <span class="kcal">~160 kcal</span></li>
+        <li><b>Core:</b> Dead bug 3×12 · Side plank 2×20s <span class="kcal">~60 kcal</span></li>
+      </ul></td><td><ul>
+        <li><b>Cardio:</b> Step‑up circuit 30s on/30s rest ×20 min <span class="kcal">~350 kcal</span></li>
+        <li><b>Strength:</b> Pike push‑ups 3×10 · Reverse lunges 3×12/leg <span class="kcal">~170 kcal</span></li>
+        <li><b>Core:</b> Russian twists 3×15/side · Leg raises 3×12 <span class="kcal">~70 kcal</span></li>
+      </ul></td><td><ul>
+        <li><b>Cardio:</b> Brisk walk 30 min @ 3–4% incline <span class="kcal">~300 kcal</span></li>
+        <li><b>Strength:</b> Glute bridges 3×15 · Incline push‑ups 3×12 <span class="kcal">~150 kcal</span></li>
+        <li><b>Core:</b> Side plank 2×25s/side · Bicycle 3×15/side <span class="kcal">~70 kcal</span></li>
+      </ul></td><td><ul>
+        <li><b>Cardio:</b> Fast‑walk intervals 60s/60s ×12–15 <span class="kcal">~400 kcal</span></li>
+        <li><b>Strength:</b> BW squats 3×15 · Hip hinges 3×15 <span class="kcal">~170 kcal</span></li>
+        <li><b>Core:</b> Plank 3×45s <span class="kcal">~60 kcal</span></li>
+      </ul></td><td><ul>
+        <li><b>Cardio:</b> Light walk 30–45 min (recovery) <span class="kcal">~200–300 kcal</span></li>
+        <li><b>Strength:</b> Active recovery</li>
+        <li><b>Core:</b> Stretch only <span class="kcal">~30 kcal</span></li>
+      </ul></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="slot">Totals</td>
+          <td class="tot" data-day="0"></td>
+          <td class="tot" data-day="1"></td>
+          <td class="tot" data-day="2"></td>
+          <td class="tot" data-day="3"></td>
+          <td class="tot" data-day="4"></td>
+          <td class="tot" data-day="5"></td>
+          <td class="tot" data-day="6"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <p class="muted" style="margin-top:10px">Swap with your Safeway staples as needed. Totals compute from the green “kcal” lines.</p>
+</div>
+
+<script>
+(function(){
+  function sumMeals(dayIndex){
+    let total = 0;
+    for(let r=1;r<=4;r++){
+      const cell = document.querySelector('#cal tbody tr:nth-child('+r+') td:nth-child('+(dayIndex+2)+')');
+      if(!cell) continue;
+      cell.querySelectorAll('.kcal').forEach(span=>{
+        const m = String(span.textContent).match(/≈?\s*([0-9]+)(?:–[0-9]+)?\s*kcal/i);
+        if(m){ total += Number(m[1]); }
+      });
+    }
+    return total;
+  }
+  function sumWorkout(dayIndex){
+    let total = 0;
+    const cell = document.querySelector('#cal tbody tr:nth-child(5) td:nth-child('+(dayIndex+2)+')');
+    if(cell){
+      cell.querySelectorAll('.kcal').forEach(span=>{
+        const m = String(span.textContent).match(/≈?\s*([0-9]+)(?:–([0-9]+))?\s*kcal/i);
+        if(m){
+          if(m[2]) total += (Number(m[1])+Number(m[2]))/2;
+          else total += Number(m[1]);
+        }
+      });
+    }
+    return total;
+  }
+  function recalc(){
+    for(let d=0; d<7; d++){
+      const meals = Math.round(sumMeals(d));
+      const work  = Math.round(sumWorkout(d));
+      const net   = Math.round(meals - work);
+      const el = document.querySelector('tfoot .tot[data-day="'+d+'"]');
+      if(el){
+        el.innerHTML = '<span class="sum-meals">Meals: '+meals+' kcal</span><br>'
+                     + '<span class="sum-work">Workout: '+work+' kcal</span><br>'
+                     + '<span class="sum-net">Net: '+net+' kcal</span>';
+      }
+    }
+  }
+  recalc();
+})();
+</script>
+</body>
+</html>
