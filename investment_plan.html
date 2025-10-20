@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dual‑Goal Investment Plan v2 — Inflation & Dollar Hedge (2025–2028)</title>
+<style>
+  :root {
+    --bg: #0b0c10;
+    --panel: #111319;
+    --panel2: #151822;
+    --text: #e9edf1;
+    --muted: #aab3bf;
+    --accent: #4da3ff;
+    --accent-2: #7bd389;
+    --border: #1f2430;
+    --chip: #202634;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fbfcfe;
+      --panel: #ffffff;
+      --panel2: #f7f9fc;
+      --text: #1f2633;
+      --muted: #516076;
+      --accent: #2563eb;
+      --accent-2: #16a34a;
+      --border: #e6ecf5;
+      --chip: #eef3fb;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { position: sticky; top: 0; backdrop-filter: saturate(120%) blur(8px); background: color-mix(in oklab, var(--bg) 80%, transparent); border-bottom: 1px solid var(--border); }
+  .hdr { max-width: 1100px; margin: 0 auto; padding: 12px 16px; display: flex; gap: 16px; align-items: center; justify-content: space-between; }
+  .title { font-size: clamp(20px, 3.5vw, 30px); font-weight: 750; letter-spacing: 0.2px; }
+  .sub { color: var(--muted); font-size: 14px; }
+  .grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) { .grid.cols-2 { grid-template-columns: 1fr 1fr; } }
+  .panel { background: linear-gradient(0deg, var(--panel) 0%, var(--panel2) 100%); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+  h2 { margin: 6px 0 10px; font-size: clamp(18px, 3vw, 24px); }
+  p { margin: 6px 0 10px; }
+  .toc { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .toc a { display: block; padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--chip); color: var(--text); font-weight: 600; }
+  .meta { display: flex; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 13px; }
+  /* Responsive data tables */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  th, td { text-align: left; padding: 10px 12px; vertical-align: top; }
+  thead th { position: sticky; top: calc(48px + 1px); background: var(--panel2); z-index: 1; }
+  thead tr { background: var(--panel2); }
+  tbody tr:nth-child(odd) { background: color-mix(in oklab, var(--panel) 92%, black); }
+  tbody tr:nth-child(even) { background: color-mix(in oklab, var(--panel2) 92%, black); }
+  th { font-size: 13px; color: var(--muted); }
+  td { font-size: 14px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; background: color-mix(in oklab, var(--accent) 15%, var(--chip)); color: var(--text); border: 1px solid var(--border); font-size: 12px; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  details { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--panel); }
+  summary { cursor: pointer; font-weight: 700; }
+  .note { border-left: 4px solid var(--accent); padding: 10px 12px; background: color-mix(in oklab, var(--chip) 75%, transparent); border-radius: 10px; }
+  .footer { margin-top: 32px; color: var(--muted); font-size: 13px; }
+  /* Print styles */
+  @media print {
+    header { position: static; }
+    .wrap { padding: 0; }
+    .panel { break-inside: avoid; }
+    .table-wrap { overflow: visible; }
+    thead th { position: static; }
+    a::after { content: " (" attr(href) ")"; font-size: 11px; color: var(--muted); }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="hdr">
+      <div>
+        <div class="title">Dual‑Goal Investment Plan v2</div>
+        <div class="sub">Inflation &amp; Dollar Hedge Edition (2025–2028)</div>
+      </div>
+      <div class="meta">
+        <span>Prepared for: <strong>Investor (Age 48)</strong></span>
+        <span>Updated: October 20, 2025</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="panel" id="overview">
+      <h2>Quick Navigation</h2>
+      <div class="toc">
+        <a href="#context">1) Economic Context & Objectives</a>
+        <a href="#allocation">2) $100K Allocation — Resilient Split</a>
+        <a href="#home">3) Home Down Payment Reserve</a>
+        <a href="#growth">4) Long‑Term Growth & Hedge Portfolio</a>
+        <a href="#hedge">5) Dollar Devaluation & Inflation Hedge</a>
+        <a href="#takeaways">6) Key Takeaways</a>
+      </div>
+    </section>
+
+    <section class="panel" id="context">
+      <h2>1) Economic Context & Objectives</h2>
+      <p>
+        This web version is optimized for all screens. The plan balances
+        <strong>short‑term capital preservation</strong> for a potential home purchase in 1–3 years
+        and <strong>long‑term growth</strong> with hedges against inflation, market volatility,
+        and potential U.S. dollar devaluation.
+      </p>
+      <div class="chips">
+        <span class="badge">Volatility‑aware</span>
+        <span class="badge">Inflation‑resistant</span>
+        <span class="badge">Global diversification</span>
+        <span class="badge">Real‑asset hedge</span>
+      </div>
+    </section>
+
+    <section class="panel" id="allocation">
+      <h2>2) Revised $100K Allocation — Resilient Split Strategy</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>%</th>
+              <th>$</th>
+              <th>Objective</th>
+              <th>Protection</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Home Down Payment Reserve</td>
+              <td>45%</td>
+              <td>$45,000</td>
+              <td>Capital preservation + modest yield</td>
+              <td>TIPS, T‑Bills, HYSA</td>
+            </tr>
+            <tr>
+              <td>Long‑Term Growth Portfolio</td>
+              <td>35%</td>
+              <td>$35,000</td>
+              <td>Growth + diversification</td>
+              <td>U.S., Global, Hard Assets</td>
+            </tr>
+            <tr>
+              <td>Strategic Hard‑Asset Hedge</td>
+              <td>10%</td>
+              <td>$10,000</td>
+              <td>Dollar devaluation hedge</td>
+              <td>Gold, Silver, Commodities</td>
+            </tr>
+            <tr>
+              <td>Crypto &amp; Digital Assets</td>
+              <td>10%</td>
+              <td>$10,000</td>
+              <td>Alternative currency hedge</td>
+              <td>BTC, ETH, Stablecoins</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Tip: On small screens, swipe the table horizontally to see all columns.</p>
+    </section>
+
+    <section class="panel" id="home">
+      <h2>3) Home Down Payment Reserve (Safe + Inflation‑Resistant)</h2>
+      <p>Maintain <strong>$45,000</strong> in short‑term, inflation‑hedged instruments to keep the option to buy a home within 1–3 years:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Vehicle</th><th>Target</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>TIPS</td><td>$15,000</td><td>Inflation‑protected Treasuries; real yield + CPI adjustment.</td></tr>
+            <tr><td>3–6 Month T‑Bills (Ladder)</td><td>$15,000</td><td>5%+ yield in recent markets; roll maturities for liquidity.</td></tr>
+            <tr><td>High‑Yield Savings / MMF</td><td>$10,000–$15,000</td><td>FDIC‑insured, same/next‑day access.</td></tr>
+            <tr><td>I Bonds (Optional)</td><td>$5,000</td><td>Inflation‑linked; consider if horizon allows 12‑month lockup.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="growth">
+      <h2>4) Long‑Term Growth & Hedge Portfolio ($35,000)</h2>
+      <p>Diversified globally with inflation and dollar hedges built in. Target return: <strong>6–8% annualized</strong>.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Asset Class</th><th>%</th><th>$</th><th>Example ETF</th><th>Purpose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>U.S. Broad Market (Value Tilt)</td><td>20%</td><td>$7,000</td><td>VTV, SCHD</td><td>Dividend growth &amp; stability</td></tr>
+            <tr><td>Tech / AI Sector</td><td>10%</td><td>$3,500</td><td>QQQ, VGT</td><td>Innovation exposure</td></tr>
+            <tr><td>Global / Foreign Markets</td><td>10%</td><td>$3,500</td><td>VXUS, IXUS</td><td>Non‑USD diversification</td></tr>
+            <tr><td>Emerging Markets</td><td>5%</td><td>$1,750</td><td>EEM, VWO</td><td>BRICS exposure</td></tr>
+            <tr><td>Gold &amp; Precious Metals</td><td>10%</td><td>$3,500</td><td>GLD, IAU</td><td>Dollar hedge</td></tr>
+            <tr><td>Real Estate (REITs)</td><td>10%</td><td>$3,500</td><td>VNQ, SCHH</td><td>Real assets + income</td></tr>
+            <tr><td>Energy &amp; Commodities</td><td>5%</td><td>$1,750</td><td>DBC, GSG</td><td>Inflation hedge</td></tr>
+            <tr><td>Crypto Exposure</td><td>10%</td><td>$3,500</td><td>BTC, ETH</td><td>Decentralized asset</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="hedge">
+      <h2>5) Dollar Devaluation & Inflation Hedge Layer</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Category</th><th>Allocation</th><th>Instruments</th><th>Benefit</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Gold &amp; Silver</td><td>$7K</td><td>Physical coins, GLD, IAU, SLV</td><td>Historic store of value vs. currency debasement</td></tr>
+            <tr><td>Foreign Currency Exposure</td><td>$2K–$3K</td><td>Euro, Yen, or diversified FX acct (Wise/Revolut)</td><td>FX hedge outside USD</td></tr>
+            <tr><td>Commodities</td><td>$2K</td><td>DBC, GSG, energy funds</td><td>Inflation hedge; real‑asset beta</td></tr>
+            <tr><td>Bitcoin / Ethereum</td><td>$5K–$10K</td><td>Spot ETFs or cold storage</td><td>“Digital gold” profile, non‑sovereign asset</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details style="margin-top:12px;">
+        <summary>Why these hedges?</summary>
+        <p>They diversify stores of value beyond USD, add protection against unexpected inflation spikes, and provide exposure to non‑correlated assets.</p>
+      </details>
+    </section>
+
+    <section class="panel" id="takeaways">
+      <h2>6) Key Takeaways</h2>
+      <ul>
+        <li>Keep <strong>$45K–$50K</strong> ultra‑safe for home purchase using TIPS, T‑Bills, and (optionally) I Bonds.</li>
+        <li>Invest <strong>$35K</strong> in diversified, inflation‑resistant growth ETFs with global and real‑asset exposure.</li>
+        <li>Maintain <strong>10–15%</strong> in hard assets (gold, crypto, commodities) as a de‑dollarization hedge.</li>
+        <li>Continue contributing to 401(k) and Roth IRA; rebalance annually.</li>
+        <li>Adjust hedge ratios if inflation or USD trend changes materially.</li>
+      </ul>
+    </section>
+
+    <p class="footer">© October 20 — Dual‑Goal Investment Plan v2. This is informational and not financial advice.</p>
+  </main>
+</body>
+</html>
